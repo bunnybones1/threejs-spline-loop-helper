@@ -2,7 +2,9 @@ var onReady = function() {
 	var View = require('threejs-managed-view').View;
 	var SplineLoop = require('threejs-spline-loop');
 	var SplineLoopHelper = require('./');
-	var view = new View();
+	var view = new View({
+		useRafPolyfill: false
+	});
 	var scene = view.scene;
 	view.camera.updateMatrixWorld();
 
@@ -28,10 +30,18 @@ var onReady = function() {
 	spline.cache(100);
 	var splineHelper = new SplineLoopHelper(spline, {
 		color: 0xffdfff,
-		handleRadius: .25,
+		handleRadius: .15,
 		alwaysOnTop: true
 	});
 	scene.add(splineHelper);
+
+	var playHandle = splineHelper.handles[0];
+	view.renderManager.onEnterFrame.add(function() {
+		playHandle.position.x *= .9;
+		playHandle.point.copy(playHandle.position);
+		spline.updateCache();
+		splineHelper.update();
+	})
 	
 }
 
