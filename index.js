@@ -9,23 +9,23 @@ function SplineLoopHelper(splineLoop, options) {
 	THREE.Object3D.call(this);
 
 	var ballGeometry = new THREE.SphereGeometry(options.handleRadius);
-	var pointHandleMaterial = new THREE.MeshBasicMaterial({
+	var handleMaterial = new THREE.MeshBasicMaterial({
 		color: options.color,
 		depthTest: false,
 		transparent: true
 	});
 
-	var pointHandles = [];
+	var handles = this.handles = [];
 	var _this = this;
 	splineLoop.points.forEach(function(point) {
-		var pointHandle = new THREE.Mesh(ballGeometry, pointHandleMaterial);
-		_this.add(pointHandle);
-		pointHandle.renderDepth = options.alwaysOnTop ? 1 : undefined;
-		pointHandle.position.copy(point);
-		pointHandle.point = point;
-		pointHandles.push(pointHandle);
-		pointHandle.updateMatrix();
-		pointHandle.updateMatrixWorld();
+		var handle = new THREE.Mesh(ballGeometry, handleMaterial);
+		_this.add(handle);
+		handle.renderDepth = options.alwaysOnTop ? 1 : undefined;
+		handle.position.copy(point);
+		handle.point = point;
+		handles.push(handle);
+		handle.updateMatrix();
+		handle.updateMatrixWorld();
 	});
 
 	var splineSegs = 100;
