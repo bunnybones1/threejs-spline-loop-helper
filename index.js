@@ -1,10 +1,16 @@
-function SplineLoopHelper(splineLoop) {
+var _ = require('lodash');
+function SplineLoopHelper(splineLoop, options) {
+	options = _.merge({
+		color: 0x7fafff,
+		handleRadius: .15,
+		alwaysOnTop: true
+	}, options || {});
+
 	THREE.Object3D.call(this);
 
-	var color = 0x7fafff;
-	var ballGeometry = new THREE.SphereGeometry(.15);
+	var ballGeometry = new THREE.SphereGeometry(options.handleRadius);
 	var pointHandleMaterial = new THREE.MeshBasicMaterial({
-		color: color,
+		color: options.color,
 		depthTest: false,
 		transparent: true
 	});
@@ -14,7 +20,7 @@ function SplineLoopHelper(splineLoop) {
 	splineLoop.points.forEach(function(point) {
 		var pointHandle = new THREE.Mesh(ballGeometry, pointHandleMaterial);
 		_this.add(pointHandle);
-		pointHandle.renderDepth = 1;
+		pointHandle.renderDepth = options.alwaysOnTop ? 1 : undefined;
 		pointHandle.position.copy(point);
 		pointHandle.point = point;
 		pointHandles.push(pointHandle);
@@ -26,7 +32,7 @@ function SplineLoopHelper(splineLoop) {
 	var splineGeometry = new THREE.Geometry();
 
 	var splineMaterial = new THREE.LineBasicMaterial({
-	    color: color
+	    color: options.color
 	});
 
 	var coord;
@@ -36,6 +42,8 @@ function SplineLoopHelper(splineLoop) {
 		splineGeometry.vertices.push(vert);
 	};
 	var splineMesh = new THREE.Line(splineGeometry, splineMaterial);
+	splineMesh.renderDepth = options.alwaysOnTop ? 1 : undefined;
+	
 	this.add(splineMesh);
 }
 

@@ -10,6 +10,7 @@
     "url": "https://github.com/bunnybones1"
   },
   "dependencies": {
+    "lodash": "^2.4.1",
     "threejs-spline-loop": "^2.0.0"
   },
   "devDependencies": {

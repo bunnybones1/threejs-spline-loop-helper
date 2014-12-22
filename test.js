@@ -26,7 +26,11 @@ var onReady = function() {
 
 	var spline = new SplineLoop(points);
 	spline.cache(100);
-	var splineHelper = new SplineLoopHelper(spline);
+	var splineHelper = new SplineLoopHelper(spline, {
+		color: 0xffdfff,
+		handleRadius: .25,
+		alwaysOnTop: true
+	});
 	scene.add(splineHelper);
 	
 }
