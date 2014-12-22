@@ -1,6 +1,6 @@
 {
   "name": "threejs-spline-loop-helper",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A Spline object with the ability to sample points in a seamless loop. Linear caching available for speed increase.",
   "main": "index.js",
   "license": "MIT",
