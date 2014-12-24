@@ -2,7 +2,7 @@
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-A Spline object with the ability to sample points in a seamless loop. Linear caching available for speed increase.
+A Visual Helper for Spline Loop objects.
 
 ## Usage
 
