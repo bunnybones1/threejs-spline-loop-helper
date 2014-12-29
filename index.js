@@ -1,7 +1,7 @@
 var _ = require('lodash');
 function SplineLoopHelper(splineLoop, options) {
 	options = _.merge({
-		color: 0x7fafff,
+		color: 0x7f6f5f,
 		handleRadius: .15,
 		alwaysOnTop: true
 	}, options || {});
@@ -12,7 +12,8 @@ function SplineLoopHelper(splineLoop, options) {
 	var handleMaterial = new THREE.MeshBasicMaterial({
 		color: options.color,
 		depthTest: false,
-		transparent: true
+		transparent: true,
+		blending: THREE.AdditiveBlending
 	});
 
 	var handles = this.handles = [];
