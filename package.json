@@ -1,6 +1,6 @@
 {
   "name": "threejs-spline-loop-helper",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A Visual Helper for Spline Loop objects.",
   "main": "index.js",
   "license": "MIT",
